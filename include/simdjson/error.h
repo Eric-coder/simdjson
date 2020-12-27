@@ -149,6 +149,13 @@ struct simdjson_result_base : public std::pair<T, error_code> {
   simdjson_really_inline T& value() & noexcept(false);
 
   /**
+   * Get the result value.
+   *
+   * @throw simdjson_error if there was an error.
+   */
+  simdjson_really_inline const T& value() const & noexcept(false);
+
+  /**
    * Take the result value (move it).
    *
    * @throw simdjson_error if there was an error.
@@ -167,6 +174,10 @@ struct simdjson_result_base : public std::pair<T, error_code> {
    *
    * @throw simdjson_error if there was an error.
    */
+  simdjson_really_inline operator T&() & noexcept(false);
+  /** @overload simdjson_really_inline operator T&() & noexcept(false); */
+  simdjson_really_inline operator const T&() const & noexcept(false);
+  /** @overload simdjson_really_inline operator T&() & noexcept(false); */
   simdjson_really_inline operator T&&() && noexcept(false);
 
 #endif // SIMDJSON_EXCEPTIONS
@@ -226,6 +237,8 @@ struct simdjson_result : public internal::simdjson_result_base<T> {
    * @throw simdjson_error if there was an error.
    */
   simdjson_really_inline T& value() & noexcept(false);
+  /** @overload simdjson_really_inline T& value() & noexcept(false); */
+  simdjson_really_inline const T& value() const & noexcept(false);
 
   /**
    * Take the result value (move it).
@@ -246,6 +259,10 @@ struct simdjson_result : public internal::simdjson_result_base<T> {
    *
    * @throw simdjson_error if there was an error.
    */
+  simdjson_really_inline operator T&() & noexcept(false);
+  /** @overload simdjson_really_inline operator T&() & noexcept(false); */
+  simdjson_really_inline operator const T&() const & noexcept(false);
+  /** @overload simdjson_really_inline operator T&() & noexcept(false); */
   simdjson_really_inline operator T&&() && noexcept(false);
 
 #endif // SIMDJSON_EXCEPTIONS

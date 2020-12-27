@@ -75,6 +75,8 @@ struct implementation_simdjson_result_base {
    * @throw simdjson_error if there was an error.
    */
   simdjson_really_inline T& value() & noexcept(false);
+  /** @overload simdjson_really_inline T& value() & noexcept(false); */
+  simdjson_really_inline const T& value() const & noexcept(false);
 
   /**
    * Take the result value (move it).
@@ -95,6 +97,10 @@ struct implementation_simdjson_result_base {
    *
    * @throw simdjson_error if there was an error.
    */
+  simdjson_really_inline operator T&() & noexcept(false);
+  /** @overload simdjson_really_inline operator T&() & noexcept(false); */
+  simdjson_really_inline operator const T&() const & noexcept(false);
+  /** @overload simdjson_really_inline operator T&() & noexcept(false); */
   simdjson_really_inline operator T&&() && noexcept(false);
 
 #endif // SIMDJSON_EXCEPTIONS

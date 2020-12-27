@@ -89,7 +89,8 @@ alpha right now. More information can be found in the [On Demand Guide](doc/onde
    using namespace simdjson::builtin; // for ondemand
    int main(void) {
       ondemand::parser parser;
-      ondemand::document tweets = parser.iterate(simdjson::padded_string::load("twitter.json"));
+      auto json = simdjson::padded_string::load("twitter.json");
+      ondemand::document tweets = parser.iterate(json);
       std::cout << uint64_t(tweets["search_metadata"]["count"]) << " results." << std::endl;
    }
    ```
